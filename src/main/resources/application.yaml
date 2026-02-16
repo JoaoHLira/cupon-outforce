@@ -1,0 +1,44 @@
+server:
+  servlet:
+    context-path: /ecommerce/api
+
+spring:
+  application:
+    name: outforce-ecommerce
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/ecommerce-db?currentSchema=ecommerce}
+    username: ${DATASOURCE_USER:postgres}
+    password: ${DATASOURCE_PASS:postgres}
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      poolName: SpringBootJPAHikariCP
+      minimumIdle: 15
+      maximumPoolSize: 50
+      connectionTimeout: 30000
+      idleTimeout: 30000
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: ecommerce
+  flyway:
+    schemas: ecommerce
+    default-schema: ecommerce
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+
+logging:
+  level:
+    br.com.joaolirarosas: ${LOG_LEVEL:DEBUG}
