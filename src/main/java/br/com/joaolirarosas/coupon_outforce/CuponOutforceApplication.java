@@ -1,4 +1,4 @@
-package br.com.joaolirarosas.cupon_outforce;
+package br.com.joaolirarosas.coupon_outforce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

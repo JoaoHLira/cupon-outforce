@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.joaolirarosas</groupId>
-	<artifactId>cupon-outforce</artifactId>
+	<artifactId>coupon-outforce</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cupon-outforce</name>
+	<name>coupon-outforce</name>
 	<description>Esse é um desafio técnico da Outforce</description>
 	<url/>
 	<licenses>
