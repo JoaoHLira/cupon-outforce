@@ -38,7 +38,7 @@ public class CouponCode {
 
     private void checkSizeOfTheCode(String code) {
         if (code.length() != CODE_SIZE) {
-            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE_STATUS, "O código deve ter o seu tamanho igual a " + CODE_SIZE));
+            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE_STATUS, "O código deve ser alfanumérico e ter o seu tamanho igual a " + CODE_SIZE));
         }
     }
 
