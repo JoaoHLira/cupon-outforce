@@ -55,13 +55,13 @@ public class Coupon {
         this.description = description;
         this.discount = new CouponDiscount(discountValue);
         this.createdAt = LocalDateTime.now();
-        checkIfExpirationDateAsPassed(expirationDate);
+        checkIfExpirationDateHasPassed(expirationDate);
         this.expirationDate = expirationDate;
         this.published = published;
         this.status = determinesStatusByPublished(published);
     }
 
-    private void checkIfExpirationDateAsPassed(LocalDateTime expirationDate) {
+    private void checkIfExpirationDateHasPassed(LocalDateTime expirationDate) {
         if (expirationDate.isBefore(LocalDateTime.now())) {
             throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.EXPIRATION_DATE, "A data de expiração não deve estar no passado"));
         }
@@ -79,7 +79,7 @@ public class Coupon {
 
     private void checkIfIsMarkedAsDeleted() {
         if (this.status.equals(CouponStatus.DELETED)) {
-            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE_STATUS, "Cupom já foi deletado!"));
+            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.COUPON_STATUS, "Cupom já foi deletado!"));
         }
     }
 }

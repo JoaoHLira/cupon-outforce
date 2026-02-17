@@ -17,32 +17,32 @@ public class CouponCode {
     @Column(name = "code", length = 6, nullable = false)
     private String code;
 
+    private static final Integer CODE_SIZE = 6;
+
     public CouponCode(String code) {
-        String codeFormated = removeEspecialCharacters(code);
+        String codeFormated = removeSpecialCharacters(code);
         validateCode(codeFormated);
         this.code = codeFormated;
     }
 
     private void validateCode(String code) {
-        checkIfCodeIsBlanckOrNull(code);
-        checkSizeOfTheCode(code);
+        checkIfCodeIsBlanck(code);
+        validateCodeSize(code);
     }
 
-    private static final Integer CODE_SIZE = 6;
-
-    private void checkIfCodeIsBlanckOrNull(String code) {
+    private void checkIfCodeIsBlanck(String code) {
         if (code.isBlank()) {
-            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE_STATUS, "O código não deve estar vazio!"));
+            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE, "O código não deve estar em branco ou nulo!"));
         }
     }
 
-    private void checkSizeOfTheCode(String code) {
+    private void validateCodeSize(String code) {
         if (code.length() != CODE_SIZE) {
-            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE_STATUS, "O código deve ser alfanumérico e ter o seu tamanho igual a " + CODE_SIZE));
+            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE, "O código deve ser alfanumérico e ter o seu tamanho igual a " + CODE_SIZE));
         }
     }
 
-    private String removeEspecialCharacters(String code) {
+    private String removeSpecialCharacters(String code) {
         return code.replaceAll("[^a-zA-Z0-9]", "");
     }
 }
