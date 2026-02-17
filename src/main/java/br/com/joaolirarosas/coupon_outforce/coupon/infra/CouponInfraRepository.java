@@ -2,6 +2,7 @@ package br.com.joaolirarosas.coupon_outforce.coupon.infra;
 
 import br.com.joaolirarosas.coupon_outforce.coupon.application.repository.CouponRepository;
 import br.com.joaolirarosas.coupon_outforce.coupon.domain.Coupon;
+import br.com.joaolirarosas.coupon_outforce.coupon.exceptions.CouponNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,7 @@ public class CouponInfraRepository implements CouponRepository {
     public Coupon findCouponById(UUID id) {
         log.info("[start] CouponInfraRepository - findCouponById");
         Coupon couponFinded = couponSpringDataJPARepository.findCouponById(id)
-                .orElseThrow(() -> new RuntimeException("Coupon não encontrado!"));
+                .orElseThrow(CouponNotFoundException::new);
         log.debug("[finish] CouponInfraRepository - findCouponById");
         return couponFinded;
     }
