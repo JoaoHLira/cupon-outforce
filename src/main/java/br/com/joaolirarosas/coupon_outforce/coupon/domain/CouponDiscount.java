@@ -1,5 +1,8 @@
 package br.com.joaolirarosas.coupon_outforce.coupon.domain;
 
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponDomainError;
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponDomainValidationException;
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponErrorType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
@@ -25,7 +28,8 @@ public class CouponDiscount {
 
     private void checkIfIsLessThanMinimumDiscount(BigDecimal value) {
         if (value.compareTo(MINIMUM_DISCOUNT) < 0) {
-            throw new RuntimeException("O valor minimo de desconto é: " + MINIMUM_DISCOUNT);
+            throw new CouponDomainValidationException(
+                    new CouponDomainError(CouponErrorType.DISCOUNT, "O valor minimo de desconto é: " + MINIMUM_DISCOUNT));
         }
     }
 }

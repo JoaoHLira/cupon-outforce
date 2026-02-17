@@ -1,5 +1,8 @@
 package br.com.joaolirarosas.coupon_outforce.coupon.domain;
 
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponDomainError;
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponDomainValidationException;
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponErrorType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,7 +63,7 @@ public class Coupon {
 
     private void checkIfExpirationDateAsPassed(LocalDateTime expirationDate) {
         if (expirationDate.isBefore(LocalDateTime.now())) {
-            throw new RuntimeException("A data de expiração não deve estar no passado");
+            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.EXPIRATION_DATE, "A data de expiração não deve estar no passado"));
         }
     }
 
@@ -76,7 +79,7 @@ public class Coupon {
 
     private void checkIfIsMarkedAsDeleted() {
         if (this.status.equals(CouponStatus.DELETED)) {
-            throw new RuntimeException("Cupom já foi deletado!");
+            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE_STATUS, "Cupom já foi deletado!"));
         }
     }
 }

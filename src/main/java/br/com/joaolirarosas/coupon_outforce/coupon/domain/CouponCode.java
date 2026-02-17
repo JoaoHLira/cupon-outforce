@@ -1,5 +1,8 @@
 package br.com.joaolirarosas.coupon_outforce.coupon.domain;
 
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponDomainError;
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponDomainValidationException;
+import br.com.joaolirarosas.coupon_outforce.coupon.domain.exceptions.CouponErrorType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
@@ -29,13 +32,13 @@ public class CouponCode {
 
     private void checkIfCodeIsBlanckOrNull(String code) {
         if (code.isBlank()) {
-            throw new RuntimeException("O código não deve estar vazio");
+            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE_STATUS, "O código não deve estar vazio!"));
         }
     }
 
     private void checkSizeOfTheCode(String code) {
         if (code.length() != CODE_SIZE) {
-            throw new RuntimeException("O código deve ter o seu tamanho igual a " + CODE_SIZE);
+            throw new CouponDomainValidationException(new CouponDomainError(CouponErrorType.CODE_STATUS, "O código deve ter o seu tamanho igual a " + CODE_SIZE));
         }
     }
 
