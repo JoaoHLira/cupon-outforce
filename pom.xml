@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.joaolirarosas</groupId>
-	<artifactId>cupon-outforce</artifactId>
+	<artifactId>coupon-outforce</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cupon-outforce</name>
+	<name>coupon-outforce</name>
 	<description>Esse é um desafio técnico da Outforce</description>
 	<url/>
 	<licenses>
@@ -59,16 +59,10 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-postgresql</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-docker-compose</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>2.4.240</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
